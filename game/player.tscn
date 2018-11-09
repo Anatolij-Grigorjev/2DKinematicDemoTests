@@ -212,6 +212,7 @@ texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
 frame = 22
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Visibility" ]
 
 [node name="smoke" type="Node2D" parent="sprite" index="0"]
 
@@ -240,6 +241,7 @@ anims/run = SubResource( 8 )
 anims/run_weapon = SubResource( 9 )
 anims/standing_weapon_ready = SubResource( 10 )
 blend_times = [  ]
+_sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="camera" type="Camera2D" parent="." index="2"]
 

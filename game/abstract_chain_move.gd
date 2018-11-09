@@ -1,6 +1,7 @@
 extends Node2D
 
 var is_performing = false #is the move being performed right now
+var hitbox_enabled = false #register attacks or not on this hitbox
 var next_valid_actions = ["attack1", "attack2"]
 
 #dynamic atomic variables
@@ -10,7 +11,6 @@ var move_duration = 1.0 #actual time it takes to complete the move
 
 #dynamic node references
 var char_root #character root node
-var animator #animation player to insert move animation
 var hitbox #hitbox rectangel for signals
 var next_chain_a1 #next chain member on attack1, node
 var next_chain_a2 #next chain member on attack2, node
@@ -18,6 +18,7 @@ var timer #timer type for timeout of combo move
 
 func _ready():
 	init_move_vars()
+	hitbox_enabled = false
 	timer.wait_time = move_duration
 	timer.connect("timeout", self, "_on_move_time_end")
 	timer.stop()
@@ -32,12 +33,13 @@ func _process(delta):
 	pass
 
 #starts combo move sequence. 
-#all combo moves need to implement this method
-func begin():
+#all combo moves need to have this method 
+#(and will if inhertinig from this script)
+func begin(animator):
 	timer.start()
 	is_performing = true
 	animator.play(anim)
-	hitbox.enabled = true
+	hitbox_enabled = true
 	pass
 
 #child scripts need to override 
@@ -49,7 +51,7 @@ func init_move_vars():
 func _on_move_time_end():
 	
 	is_performing = false
-	hitbox.enabled = false
+	hitbox_enabled = false
 	
 	#try continue selected attack chain
 	if (selected_next_action == "attack1" && next_chain_a1):
