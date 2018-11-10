@@ -23,12 +23,8 @@ onready var sprite = $sprite
 onready var combo_start = $cmr_a1_1
 
 func _ready():
-	var moves = [
-		$cmr_a1_1,
-		$cmr_a1_1/cmr_a1_2
-	]
-	for move in moves:
-		move.connect("combo_over", self, "_finish_combo")
+	combo_start.set_char(self)
+	
 
 func _physics_process(delta):
 	#increment counters

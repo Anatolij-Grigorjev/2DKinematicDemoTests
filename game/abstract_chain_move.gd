@@ -52,6 +52,14 @@ func begin(animator):
 #this and set initial move params
 func init_move_vars():
 	pass
+	
+func set_char(character_node):
+	char_root = character_node
+	connect("combo_over", char_root, "_finish_combo")
+	if next_chain_a1 != null:
+		next_chain_a1.set_char(character_node)
+	if next_chain_a2 != null:
+		next_chain_a2.set_char(character_node)
 
 
 func _on_move_time_end():
