@@ -31,7 +31,8 @@ func _ready():
 
 func _process(delta):
 	#while the move is hapening we can try set which move comes next
-	if (is_performing):
+	#after at least half of it is done for input buffer
+	if (is_performing and timer.time_left <= move_duration / 2):
 		for action in next_valid_actions:
 			if Input.is_action_just_pressed(action):
 				selected_next_action = action

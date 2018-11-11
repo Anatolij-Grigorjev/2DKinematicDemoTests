@@ -113,3 +113,5 @@ func _physics_process(delta):
 		
 func _finish_combo():
 	is_combo = false
+	#play whatever the last saved animation was
+	$anim.play(anim)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://robot_demo.png" type="Texture" id=2]
@@ -32,7 +32,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=13]
 
 resource_name = "attack1_2"
-length = 1.5
+length = 1.7
 loop = false
 step = 0.25
 tracks/0/type = "value"
@@ -46,6 +46,25 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 26, 27, 26, 25 ]
+}
+
+[sub_resource type="Animation" id=14]
+
+resource_name = "attack1_3"
+length = 2.0
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.25, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 14, 13, 1 ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -252,7 +271,7 @@ editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 26
+frame = 7
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Visibility" ]
 
 [node name="smoke" type="Node2D" parent="sprite" index="0"]
@@ -273,6 +292,7 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/attack1_1 = SubResource( 12 )
 anims/attack1_2 = SubResource( 13 )
+anims/attack1_3 = SubResource( 14 )
 anims/crouch = SubResource( 1 )
 anims/falling = SubResource( 2 )
 anims/falling_weapon = SubResource( 3 )
