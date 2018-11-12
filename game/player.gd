@@ -20,9 +20,12 @@ var anim=""
 
 #cache the sprite here for fast access (we will set scale to flip it often)
 onready var sprite = $sprite
-onready var combo_start = $cmr_a1_1
+onready var combo_start = $cmr_a1_1 # first node in combo sequence
 
 func _ready():
+	#set the char root node on the combo chain
+	#call sets character and signals for this move and 
+	#passes the call down the chain
 	combo_start.set_char(self)
 	
 
@@ -47,14 +50,24 @@ func _physics_process(delta):
 	### CONTROL ###
 
 	# Horizontal Movement
-	var target_speed = 0
+	var target_speed_x = 0
 	if Input.is_action_pressed("move_left"):
-		target_speed += -1
+		target_speed_x += -1
 	if Input.is_action_pressed("move_right"):
-		target_speed +=  1
+		target_speed_x +=  1
 
-	target_speed *= WALK_SPEED
-	linear_vel.x = lerp(linear_vel.x, target_speed, 0.1)
+	target_speed_x *= WALK_SPEED
+	linear_vel.x = lerp(linear_vel.x, target_speed_x, 0.1)
+	
+	# Vertical Movement
+	var target_speed_y = 0
+	if Input.is_action_pressed("move_up"):
+		target_speed_y += -1
+	if Input.is_action_pressed("move_down"):
+		target_speed_y +=  1
+
+	target_speed_y *= WALK_SPEED
+	linear_vel.y = lerp(linear_vel.y, target_speed_y, 0.1)	
 	
 	if (not is_combo):
 		#Combo-ing

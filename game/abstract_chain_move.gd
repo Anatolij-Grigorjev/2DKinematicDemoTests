@@ -47,7 +47,6 @@ func begin(animator):
 	is_performing = true
 	animator.play(anim)
 	hitbox_enabled = true
-	pass
 
 #child scripts need to override 
 #this and set initial move params
@@ -63,10 +62,14 @@ func set_char(character_node):
 		next_chain_a2.set_char(character_node)
 
 
-func _on_move_time_end():
-	
+func reset_move_vars():
 	is_performing = false
 	hitbox_enabled = false
+	timer.stop()
+
+func _on_move_time_end():
+	
+	reset_move_vars()
 	
 	#try continue selected attack chain
 	if (selected_next_action == "attack1" && next_chain_a1 != null):
@@ -77,3 +80,14 @@ func _on_move_time_end():
 		#none selected or selected not available - signal end of combo
 		emit_signal("combo_over")
 	pass
+	
+#use robot main cannon to perform regular shot
+#assumes char_root is already set
+func do_shot():
+	var bullet = preload("res://bullet.tscn").instance()
+	bullet.position = char_root.sprite.get_node("bullet_shoot").global_position #use node for shoot position
+	bullet.linear_velocity = Vector2(char_root.sprite.scale.x * char_root.BULLET_VELOCITY, 0)
+	bullet.add_collision_exception_with(char_root) # don't want player to collide with bullet
+	(char_root.get_parent() if char_root.get_parent() != null else char_root).add_child(bullet) #don't want bullet to move with me, so add it as child of parent
+	char_root.get_node("sound_shoot").play()
+	

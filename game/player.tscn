@@ -267,11 +267,10 @@ _sections_unfolded = [ "collision" ]
 
 [node name="sprite" type="Sprite" parent="." index="0"]
 
-editor/display_folded = true
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 7
+frame = 14
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Visibility" ]
 
 [node name="smoke" type="Node2D" parent="sprite" index="0"]
