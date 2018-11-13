@@ -59,16 +59,6 @@ func _physics_process(delta):
 	target_speed_x *= WALK_SPEED
 	linear_vel.x = lerp(linear_vel.x, target_speed_x, 0.1)
 	
-	# Vertical Movement
-	var target_speed_y = 0
-	if Input.is_action_pressed("move_up"):
-		target_speed_y += -1
-	if Input.is_action_pressed("move_down"):
-		target_speed_y +=  1
-
-	target_speed_y *= WALK_SPEED
-	linear_vel.y = lerp(linear_vel.y, target_speed_y, 0.1)	
-	
 	if (not is_combo):
 		#Combo-ing
 		if Input.is_action_just_pressed("attack1"):
@@ -91,7 +81,6 @@ func _physics_process(delta):
 			shoot_time = 0
 
 	### ANIMATION ###
-	
 	if (not is_combo):
 		var new_anim = "idle"
 	

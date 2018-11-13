@@ -23,7 +23,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.75, 1, 1.25, 1.5 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.25, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 25, 26, 27, 26 ]
@@ -270,7 +270,7 @@ _sections_unfolded = [ "collision" ]
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 16
-frame = 14
+frame = 16
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Visibility" ]
 
 [node name="smoke" type="Node2D" parent="sprite" index="0"]
